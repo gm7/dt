@@ -31,6 +31,14 @@ export class HomeComponent implements OnInit {
     this.dialog.open(KanbanDialogComponent, dialogConfig)
   }
 
+  deleteKanban(kanbanId: String): void {
+    this.kanbanService.deleteKanbanById((kanbanId)).subscribe(
+      () => this.retrieveAllKanbanBoards()
+    );
+    // force reload
+    window.location.reload();
+  }
+
   private retrieveAllKanbanBoards(): void {
     this.kanbanService.retrieveAllKanbanBoards().subscribe(
 

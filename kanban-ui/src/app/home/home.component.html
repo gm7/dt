@@ -5,13 +5,29 @@
   <div>
     <button mat-raised-button (click)="openDialogForNewKanban()">+ Create Kanban</button>
   </div>
-  
+
   <div class="main-card">
-    <mat-nav-list>
-      <a mat-list-item *ngFor="let kanban of kanbanList" routerLink="/kanbans/{{kanban.id}}"> 
-        <p class="kanban-title">{{kanban.title}}</p>
-      </a>
-    </mat-nav-list>
+    <table>
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Created</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let kanban of kanbanList">
+        <td>{{kanban.title}}</td>
+        <td>{{kanban.createdAt}}</td>
+        <td>
+          <a mat-raised-button class="nav-link" routerLink="/kanbans/{{kanban.id}}">Open</a>
+          <a mat-raised-button (click)="deleteKanban(kanban.id)">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
+
+
 </div>
 
