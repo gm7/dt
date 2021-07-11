@@ -3,6 +3,9 @@
     <h1>{{kanban?.title}}</h1>
   </div>
   <div>
+    <a mat-raised-button class="nav-link" [routerLink]="['/']">Back</a>
+  </div>
+  <div>
     <button mat-raised-button (click)="openDialogForNewTask()">+ Create Task</button>
   </div>
   <div class="kanban-board">
@@ -30,7 +33,7 @@
       cdkDropList
       id="inpro"
       [cdkDropListData]="inprogress"
-      [cdkDropListConnectedTo]="['todo', 'done']"
+      [cdkDropListConnectedTo]="['todo', 'testing']"
       class="board-list"
       (cdkDropListDropped)="drop($event)">
         <div class="sticky-note" *ngFor="let task of inprogress" cdkDrag
@@ -41,6 +44,24 @@
         </div>
       </div>
   </div>
+
+    <div class="list-container">
+      <h2>Testing</h2>
+      <div
+        cdkDropList
+        id="testing"
+        [cdkDropListData]="testing"
+        [cdkDropListConnectedTo]="['inpro', 'done']"
+        class="board-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="sticky-note" *ngFor="let task of testing" cdkDrag
+             [style.background-color]="task.color"
+             (dblclick)="openTaskDialog($event)"
+             id="{{task.id}}">
+          {{task.title}}
+        </div>
+      </div>
+    </div>
 
     <div class="list-container">
         <h2>Done</h2>

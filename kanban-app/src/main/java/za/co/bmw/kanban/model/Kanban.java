@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,6 +36,15 @@ public class Kanban {
     @JoinColumn(name = "kanban_id")
     @ApiModelProperty(position = 3)
     private List<Task> tasks;
+
+    @Column(name = "created_at", updatable = false)
+    @ApiModelProperty(position = 4)
+    private Date createdAt;
+
+    @PrePersist
+    void createdAt() {
+        this.createdAt = new Date();
+    }
 
     public void addTask(Task task) {
 

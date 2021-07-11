@@ -2,9 +2,9 @@
 
 html {
     background-image: url(./assets/background.jpeg);
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover;
+    background-position: left; /* Center the image */
+    background-repeat: repeat; /* Repeat the image */
+    background-size: auto;
 }
 
 .page-container {

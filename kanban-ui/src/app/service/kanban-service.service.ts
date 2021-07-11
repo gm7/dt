@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class KanbanService {
 
   private kanbanAppUrl = environment.kanbanAppUrl
-  
+
   constructor(private http: HttpClient) { }
 
   retrieveAllKanbanBoards(): Observable<Kanban[]> {
@@ -32,7 +32,7 @@ export class KanbanService {
       options
     );
   }
-  
+
   saveNewTaskInKanban(kanbanId: String, task: Task): Observable<Task> {
     let headers = new HttpHeaders({'Content-Type': 'application/json' });
     let options = { headers: headers };
@@ -40,6 +40,10 @@ export class KanbanService {
       this.kanbanAppUrl + '/kanbans/' + kanbanId + '/tasks/',
       task,
       options);
+  }
+
+  deleteKanbanById(kanbanId: String): Observable<Object> {
+    return this.http.delete(this.kanbanAppUrl + '/kanbans/' + kanbanId);
   }
 
   private prepareTiTleJsonObject(title: string) {
